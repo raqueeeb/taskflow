@@ -1,5 +1,7 @@
 # TaskFlow
 
+> 📘 **Case study:** [raqueeb.dev/projects/taskflow](https://raqueeb.dev/projects/taskflow) — architecture, stack and implementation notes.
+
 A task manager for people juggling several projects: priorities, due dates,
 tags, a calendar, and a dashboard whose numbers are computed from the database
 on every request.
