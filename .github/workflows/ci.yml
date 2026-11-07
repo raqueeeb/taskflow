@@ -1,0 +1,39 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    name: "typecheck, lint, test, build"
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ["20.x", "22.x"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+
+      - name: "install"
+        run: npm ci
+
+      - name: "typecheck"
+        run: npm run typecheck
+
+      - name: "lint"
+        run: npm run lint
+
+      # The suite runs against PGlite, an in-process Postgres, so there is no
+      # database service to stand up and no connection string to configure.
+      - name: "tests"
+        run: npm run test
+
+      - name: "build"
+        run: npm run build
