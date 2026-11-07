@@ -228,10 +228,10 @@ the production UI contains no hard-coded tasks.
 
 ### Unit and integration — `npm test`
 
-147 tests across 8 files. These are not mocked: each test file boots its own
-in-memory PostgreSQL via PGlite, runs the real migrations, and exercises the
-real query builder. Real constraints, real enum ordering, real
-`count(*) filter (...)`.
+181 tests across 10 files. The ones touching data are not mocked: each of
+those files boots its own in-memory PostgreSQL via PGlite, runs the real
+migrations, and exercises the real query builder. Real constraints, real enum
+ordering, real `count(*) filter (...)`.
 
 | File | Covers |
 | --- | --- |
@@ -243,6 +243,8 @@ real query builder. Real constraints, real enum ordering, real
 | `tests/stats.test.ts` | Every dashboard number, against a known fixture |
 | `tests/validation.test.ts` | Schemas, including hand-crafted invalid input |
 | `tests/date.test.ts` | Time-zone day boundaries, DST, half-hour offsets |
+| `tests/rate-limit.test.ts` | Window boundaries, per-key isolation, expiry, proxy-header parsing |
+| `tests/utils.test.ts` | Class merging, initials, pluralisation, contrast and alpha maths |
 
 ### End-to-end — `npm run test:e2e`
 
